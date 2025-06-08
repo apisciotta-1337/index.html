@@ -57,6 +57,7 @@
       animation: scrollLogos 60s linear infinite;
       gap: 32px;
       padding-left: 0;
+      width: max-content;
     }
     .logo-track img {
       height: 60px;
@@ -105,11 +106,10 @@
       100% { transform: translateX(-50%); }
     }
     @keyframes cycleImages {
-      0% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/bg1.png'); }
-      25% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/bg2.png'); }
-      50% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/bg3.png'); }
-      75% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/bg4.png'); }
-      99% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/bg5.png'); }
+      0%, 100% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg1.png'); }
+      25% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg2.png'); }
+      50% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg3.png'); }
+      75% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg4.png'); }
     }
   </style>
 </head>
