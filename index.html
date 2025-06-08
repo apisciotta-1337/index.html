@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Precision Automation</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-size: 80%;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -1;
+      animation: cycleImages 30s infinite;
+    }
+    body > *:not(.partner-sidebar):not(script):not(style) {
+      margin-left: 120px;
+    }
+    .partner-sidebar {
+      position: fixed;
+      top: 0;
+      width: 120px;
+      height: 100vh;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      z-index: 10;
+      padding: 0;
+    }
+    .partner-sidebar.left {
+      left: 0;
+    }
+    .partner-sidebar.right {
+      right: 0;
+      left: auto;
+    }
+    .partner-sidebar img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      background: transparent;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      margin: 0 auto;
+      display: block;
+    }
+    .main-content {
+      margin-left: 120px;
+      margin-right: 120px;
+    }
+    nav {
+      text-align: center;
+      background: transparent;
+      padding: 0.5rem 1rem;
+      margin-left: 120px;
+      margin-right: 120px;
+      border-radius: 0;
+      box-sizing: border-box;
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal.show {
+      display: flex;
+    }
+    .modal-content {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 500px;
+      width: 90%;
+      color: black;
+      position: relative;
+      font-family: Arial, sans-serif;
+    }
+    .modal-content h2 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .modal-content h3 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+    .modal-content ul {
+      padding-left: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .modal-content ul li {
+      list-style-type: disc;
+      margin-bottom: 0.5rem;
+    }
+    .close {
+      color: #fff;
+      background: #007bff;
+      border-radius: 3px;
+      padding: 2px 8px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
+    @keyframes cycleImages {
+      0% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg1.png'); }
+      25% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg2.png'); }
+      50% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg3.png'); }
+      75% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg4.png'); }
+      99% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg5.png'); }
+    }
+  </style>
+</head>
+<body>
+  <div class="partner-sidebar left">
+    <img src="siemens.png" alt="Siemens" title="Siemens">
+    <img src="rockwell.png" alt="Rockwell Automation" title="Rockwell Automation">
+    <img src="honeywell.png" alt="Honeywell" title="Honeywell">
+    <img src="automationdirect.png" alt="Automation Direct" title="Automation Direct">
+    <img src="emerson.png" alt="Emerson" title="Emerson">
+    <img src="schneider.png" alt="Schneider" title="Schneider">
+  </div>
+
+  <div class="partner-sidebar right">
+    <img src="beckhoff.png" alt="Beckhoff" title="Beckhoff">
+    <img src="mitsubishi.png" alt="Mitsubishi" title="Mitsubishi">
+    <img src="delta.png" alt="Delta" title="Delta">
+    <img src="yaskawa.png" alt="Yaskawa" title="Yaskawa">
+    <img src="baldor.png" alt="Baldor" title="Baldor">
+    <img src="omron.png" alt="Omron" title="Omron">
+  </div>
+
+  <nav>
+    <a onclick="openModal('whoModal')">Who We Are</a>
+    <a onclick="openModal('capabilitiesModal')">Capabilities</a>
+    <a onclick="openModal('contactModal')">Contact</a>
+  </nav>
+
+  <div id="whoModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('whoModal')">&times;</span>
+      <h2>Who We Are</h2>
+      <p>We are a Tucson-based company specializing in full-scope automation and process control systems.
+        From robust industrial machinery to delicate semiconductor tools. We integrate, upgrade, and repair 
+        with unmatched precision.
+      </p>
+    </div>
+  </div>
+
+  <div id="capabilitiesModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('capabilitiesModal')">&times;</span>
+      <h2>Capabilities</h2>
+      <ul>
+        <li>PLC & HMI Integration (Siemens, Rockwell, Schneider, and more)</li>
+        <li>Motion Control: Stepper, Servo, Drives, Film, Webbing, and Indexing</li>
+        <li>Vacuum and Thermal Systems and Process Gas Systems</li>
+        <li>Panel Building, Field Service, System Retrofits</li>
+      </ul>
+      <h3>Why choose us?</h3>
+      <ul>
+        <li>American-owned and operated</li>
+        <li>Responsive field service across Southern Arizona</li>
+        <li>Cross-disciplinary expertise in both mechanical and controls systems</li>
+        <li>No project too big or small — we do it all</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('contactModal')">&times;</span>
+      <h2>Contact Us</h2>
+      <p>Email: contact@precisionautomation.com</p>
+      <p>Phone: (555) 123-4567</p>
+    </div>
+  </div>
+
+  <script>
+    function openModal(id) {
+      document.getElementById(id).classList.add('show');
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('show');
+    }
+  </script>
+</body>
+</html>
