@@ -1,3 +1,7 @@
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -138,7 +142,15 @@
       99% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg5.png'); }
     }
 
-    /* MOBILE RESPONSIVE STYLES */
+    @keyframes scroll-logos {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .mobile-logo-bar {
+      display: none;
+    }
+
     @media (max-width: 768px) {
       body > *:not(.partner-sidebar):not(script):not(style),
       .main-content,
@@ -172,6 +184,34 @@
         width: 90%;
         max-height: 90vh;
         overflow-y: auto;
+      }
+
+      .mobile-logo-bar {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        background: #000;
+        overflow: hidden;
+        z-index: 100;
+        align-items: center;
+      }
+
+      .mobile-logo-track {
+        display: flex;
+        animation: scroll-logos 40s linear infinite;
+        gap: 24px;
+        padding-left: 100%;
+      }
+
+      .mobile-logo-track img {
+        height: 60px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        object-fit: contain;
+        background: transparent;
       }
     }
   </style>
@@ -241,6 +281,24 @@
     </div>
   </div>
 
+  <!-- Auto-Scrolling Mobile Logo Bar -->
+  <div class="mobile-logo-bar">
+    <div class="mobile-logo-track">
+      <img src="siemens.png" alt="Siemens">
+      <img src="rockwell.png" alt="Rockwell">
+      <img src="beckhoff.png" alt="Beckhoff">
+      <img src="automationdirect.png" alt="AutomationDirect">
+      <img src="emerson.png" alt="Emerson">
+      <img src="schneider.png" alt="Schneider">
+      <img src="honeywell.png" alt="Honeywell">
+      <img src="mitsubishi.png" alt="Mitsubishi">
+      <img src="delta.png" alt="Delta">
+      <img src="yaskawa.png" alt="Yaskawa">
+      <img src="baldor.png" alt="Baldor">
+      <img src="omron.png" alt="Omron">
+    </div>
+  </div>
+
   <script>
     function openModal(id) {
       document.getElementById(id).classList.add('show');
@@ -251,6 +309,3 @@
   </script>
 </body>
 </html>
-
-
-
