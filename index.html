@@ -33,10 +33,10 @@
       background: #000;
       display: flex;
       flex-direction: column;
-      justify-content: space-evenly;
+      justify-content: space-between;
       align-items: center;
       z-index: 10;
-      padding: 0;
+      padding: 40px 0;
     }
     .partner-sidebar.left {
       left: 0;
@@ -137,20 +137,57 @@
       75% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg4.png'); }
       99% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg5.png'); }
     }
+
+    /* MOBILE RESPONSIVE STYLES */
+    @media (max-width: 768px) {
+      body > *:not(.partner-sidebar):not(script):not(style),
+      .main-content,
+      nav {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .partner-sidebar {
+        display: none;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 100;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 0 0.5rem;
+        font-size: 1.1rem;
+      }
+
+      .modal-content {
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="partner-sidebar left">
     <img src="siemens.png" alt="Siemens" title="Siemens">
     <img src="rockwell.png" alt="Rockwell Automation" title="Rockwell Automation">
-    <img src="honeywell.png" alt="Honeywell" title="Honeywell">
+    <img src="beckhoff.png" alt="Beckhoff" title="Beckhoff">
     <img src="automationdirect.png" alt="Automation Direct" title="Automation Direct">
     <img src="emerson.png" alt="Emerson" title="Emerson">
     <img src="schneider.png" alt="Schneider" title="Schneider">
   </div>
 
   <div class="partner-sidebar right">
-    <img src="beckhoff.png" alt="Beckhoff" title="Beckhoff">
+    <img src="honeywell.png" alt="Honeywell" title="Honeywell">
     <img src="mitsubishi.png" alt="Mitsubishi" title="Mitsubishi">
     <img src="delta.png" alt="Delta" title="Delta">
     <img src="yaskawa.png" alt="Yaskawa" title="Yaskawa">
@@ -190,7 +227,7 @@
         <li>American-owned and operated</li>
         <li>Responsive field service across Southern Arizona</li>
         <li>Cross-disciplinary expertise in both mechanical and controls systems</li>
-        <li>No project too big or small — we do it all</li>
+        <li>No project too big or small - we do it all</li>
       </ul>
     </div>
   </div>
