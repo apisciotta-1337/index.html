@@ -22,49 +22,10 @@
       z-index: -1;
       animation: cycleImages 30s infinite;
     }
-    body > *:not(.partner-sidebar):not(script):not(style) {
-      margin-left: 120px;
-    }
-    .partner-sidebar {
-      position: fixed;
-      top: 0;
-      width: 120px;
-      height: 100vh;
-      background: #000;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 10;
-      padding: 40px 0;
-    }
-    .partner-sidebar.left {
-      left: 0;
-    }
-    .partner-sidebar.right {
-      right: 0;
-      left: auto;
-    }
-    .partner-sidebar img {
-      width: 80px;
-      height: 80px;
-      object-fit: contain;
-      background: transparent;
-      border-radius: 8px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-      margin: 0 auto;
-      display: block;
-    }
-    .main-content {
-      margin-left: 120px;
-      margin-right: 120px;
-    }
     nav {
       text-align: center;
       background: transparent;
       padding: 0.5rem 1rem;
-      margin-left: 120px;
-      margin-right: 120px;
       border-radius: 0;
       box-sizing: border-box;
     }
@@ -130,6 +91,29 @@
       right: 10px;
       cursor: pointer;
     }
+    .logo-scrollbar {
+      position: fixed;
+      bottom: 30px;
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      z-index: 10;
+      background-color: transparent;
+      padding: 10px 0;
+    }
+    .logo-scrollbar .scrolling-logos {
+      display: inline-block;
+      animation: scrollLogos 60s linear infinite;
+    }
+    .logo-scrollbar img {
+      height: 60px;
+      margin: 0 20px;
+      vertical-align: middle;
+    }
+    @keyframes scrollLogos {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
     @keyframes cycleImages {
       0% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg1.png'); }
       25% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg2.png'); }
@@ -140,24 +124,6 @@
   </style>
 </head>
 <body>
-  <div class="partner-sidebar left">
-    <img src="siemens.png" alt="Siemens" title="Siemens">
-    <img src="rockwell.png" alt="Rockwell Automation" title="Rockwell Automation">
-    <img src="beckhoff.png" alt="Beckhoff" title="Beckhoff">
-    <img src="automationdirect.png" alt="Automation Direct" title="Automation Direct">
-    <img src="emerson.png" alt="Emerson" title="Emerson">
-    <img src="schneider.png" alt="Schneider" title="Schneider">
-  </div>
-
-  <div class="partner-sidebar right">
-    <img src="honeywell.png" alt="Honeywell" title="Honeywell">
-    <img src="mitsubishi.png" alt="Mitsubishi" title="Mitsubishi">
-    <img src="delta.png" alt="Delta" title="Delta">
-    <img src="yaskawa.png" alt="Yaskawa" title="Yaskawa">
-    <img src="baldor.png" alt="Baldor" title="Baldor">
-    <img src="omron.png" alt="Omron" title="Omron">
-  </div>
-
   <nav>
     <a onclick="openModal('whoModal')">Who We Are</a>
     <a onclick="openModal('capabilitiesModal')">Capabilities</a>
@@ -204,6 +170,23 @@
     </div>
   </div>
 
+  <div class="logo-scrollbar">
+    <div class="scrolling-logos">
+      <img src="siemens.png" alt="Siemens">
+      <img src="rockwell.png" alt="Rockwell">
+      <img src="beckhoff.png" alt="Beckhoff">
+      <img src="automationdirect.png" alt="Automation Direct">
+      <img src="emerson.png" alt="Emerson">
+      <img src="schneider.png" alt="Schneider">
+      <img src="honeywell.png" alt="Honeywell">
+      <img src="mitsubishi.png" alt="Mitsubishi">
+      <img src="delta.png" alt="Delta">
+      <img src="yaskawa.png" alt="Yaskawa">
+      <img src="baldor.png" alt="Baldor">
+      <img src="omron.png" alt="Omron">
+    </div>
+  </div>
+
   <script>
     function openModal(id) {
       document.getElementById(id).classList.add('show');
@@ -214,3 +197,4 @@
   </script>
 </body>
 </html>
+
