@@ -138,10 +138,7 @@
       99% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg5.png'); }
     }
 
-    .mobile-logo-bar {
-      display: none;
-    }
-
+    /* MOBILE RESPONSIVE STYLES */
     @media (max-width: 768px) {
       body > *:not(.partner-sidebar):not(script):not(style),
       .main-content,
@@ -175,31 +172,6 @@
         width: 90%;
         max-height: 90vh;
         overflow-y: auto;
-      }
-
-      .mobile-logo-bar {
-        display: flex;
-        overflow-x: auto;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: #000;
-        padding: 10px 0;
-        gap: 16px;
-        justify-content: start;
-        align-items: center;
-        z-index: 100;
-      }
-
-      .mobile-logo-bar img {
-        height: 60px;
-        width: auto;
-        margin: 0 10px;
-        flex-shrink: 0;
-        border-radius: 8px;
-        background: transparent;
-        object-fit: contain;
       }
     }
   </style>
@@ -269,22 +241,6 @@
     </div>
   </div>
 
-  <!-- Mobile Logo Bar -->
-  <div class="mobile-logo-bar">
-    <img src="siemens.png" alt="Siemens">
-    <img src="rockwell.png" alt="Rockwell">
-    <img src="beckhoff.png" alt="Beckhoff">
-    <img src="automationdirect.png" alt="AutomationDirect">
-    <img src="emerson.png" alt="Emerson">
-    <img src="schneider.png" alt="Schneider">
-    <img src="honeywell.png" alt="Honeywell">
-    <img src="mitsubishi.png" alt="Mitsubishi">
-    <img src="delta.png" alt="Delta">
-    <img src="yaskawa.png" alt="Yaskawa">
-    <img src="baldor.png" alt="Baldor">
-    <img src="omron.png" alt="Omron">
-  </div>
-
   <script>
     function openModal(id) {
       document.getElementById(id).classList.add('show');
@@ -295,5 +251,6 @@
   </script>
 </body>
 </html>
+
 
 
