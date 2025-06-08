@@ -33,7 +33,7 @@
       background: #000;
       display: flex;
       flex-direction: column;
-      justify-content: space-evenly;
+      justify-content: space-between;
       align-items: center;
       z-index: 10;
       padding: 40px 0;
@@ -141,21 +141,77 @@
 </head>
 <body>
   <div class="partner-sidebar left">
-    <img src="siemens.png" alt="Siemens">
-    <img src="rockwell.png" alt="Rockwell">
-    <img src="beckhoff.png" alt="Beckhoff">
-    <img src="automationdirect.png" alt="AutomationDirect">
-    <img src="emerson.png" alt="Emerson">
-    <img src="schneider.png" alt="Schneider">
+    <img src="siemens.png" alt="Siemens" title="Siemens">
+    <img src="rockwell.png" alt="Rockwell Automation" title="Rockwell Automation">
+    <img src="beckhoff.png" alt="Beckhoff" title="Beckhoff">
+    <img src="automationdirect.png" alt="Automation Direct" title="Automation Direct">
+    <img src="emerson.png" alt="Emerson" title="Emerson">
+    <img src="schneider.png" alt="Schneider" title="Schneider">
   </div>
 
   <div class="partner-sidebar right">
-    <img src="honeywell.png" alt="Honeywell">
-    <img src="mitsubishi.png" alt="Mitsubishi">
-    <img src="delta.png" alt="Delta">
-    <img src="yaskawa.png" alt="Yaskawa">
-    <img src="baldor.png" alt="Baldor">
-    <img src="omron.png" alt="Omron">
+    <img src="honeywell.png" alt="Honeywell" title="Honeywell">
+    <img src="mitsubishi.png" alt="Mitsubishi" title="Mitsubishi">
+    <img src="delta.png" alt="Delta" title="Delta">
+    <img src="yaskawa.png" alt="Yaskawa" title="Yaskawa">
+    <img src="baldor.png" alt="Baldor" title="Baldor">
+    <img src="omron.png" alt="Omron" title="Omron">
   </div>
+
+  <nav>
+    <a onclick="openModal('whoModal')">Who We Are</a>
+    <a onclick="openModal('capabilitiesModal')">Capabilities</a>
+    <a onclick="openModal('contactModal')">Contact</a>
+  </nav>
+
+  <div id="whoModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('whoModal')">&times;</span>
+      <h2>Who We Are</h2>
+      <p>We are a Tucson-based company specializing in full-scope automation and process control systems.
+        From robust industrial machinery to delicate semiconductor tools. We integrate, upgrade, and repair 
+        with unmatched precision.
+      </p>
+    </div>
+  </div>
+
+  <div id="capabilitiesModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('capabilitiesModal')">&times;</span>
+      <h2>Capabilities</h2>
+      <ul>
+        <li>PLC & HMI Integration (Siemens, Rockwell, Schneider, and more)</li>
+        <li>Motion Control: Stepper, Servo, Drives, Film, Webbing, and Indexing</li>
+        <li>Vacuum and Thermal Systems and Process Gas Systems</li>
+        <li>Panel Building, Field Service, System Retrofits</li>
+      </ul>
+      <h3>Why choose us?</h3>
+      <ul>
+        <li>American-owned and operated</li>
+        <li>Responsive field service across Southern Arizona</li>
+        <li>Cross-disciplinary expertise in both mechanical and controls systems</li>
+        <li>No project too big or small - we do it all</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('contactModal')">&times;</span>
+      <h2>Contact Us</h2>
+      <p>Email: contact@precisionautomation.com</p>
+      <p>Phone: (555) 123-4567</p>
+    </div>
+  </div>
+
+  <script>
+    function openModal(id) {
+      document.getElementById(id).classList.add('show');
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('show');
+    }
+  </script>
 </body>
 </html>
+
