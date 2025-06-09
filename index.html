@@ -11,17 +11,6 @@
       background-color: #000;
       color: #fff;
     }
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-size: 80%;
-      background-position: center;
-      background-repeat: no-repeat;
-      z-index: -1;
-      animation: cycleImages 30s infinite;
-    }
     nav {
       text-align: center;
       background: transparent;
@@ -114,16 +103,28 @@
       0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
     }
-    @keyframes cycleImages {
-      0% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg1.png'); }
-      25% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg2.png'); }
-      50% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg3.png'); }
-      75% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg4.png'); }
-      99% { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg5.png'); }
+    /* Crossfade backgrounds */
+    .bg-fader, .bg-fader-next {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -3;
+      opacity: 1;
+      transition: opacity 1s linear;
+      pointer-events: none;
+    }
+    .bg-fader-next {
+      z-index: -2;
+      opacity: 0;
     }
   </style>
 </head>
 <body>
+  <div class="bg-fader"></div>
+  <div class="bg-fader-next"></div>
   <nav>
     <a onclick="openModal('whoModal')">Who We Are</a>
     <a onclick="openModal('capabilitiesModal')">Capabilities</a>
@@ -172,33 +173,71 @@
 
   <div class="logo-scrollbar">
     <div class="scrolling-logos">
-      <img src="siemens.png" alt="Siemens">
       <img src="rockwell.png" alt="Rockwell">
+      <img src="siemens.png" alt="Siemens">
       <img src="beckhoff.png" alt="Beckhoff">
       <img src="automationdirect.png" alt="Automation Direct">
       <img src="emerson.png" alt="Emerson">
       <img src="schneider.png" alt="Schneider">
       <img src="festo.png" alt="festo">
+      <img src="alicat.png" alt="alicat">
       <img src="honeywell.png" alt="Honeywell">
       <img src="copley.png" alt="copley">
       <img src="galil.png" alt="galil">
       <img src="mitsubishi.png" alt="Mitsubishi">
       <img src="delta.png" alt="Delta">
+      <img src="instrutech.png" alt="instrutech">
       <img src="yaskawa.png" alt="Yaskawa">
       <img src="baldor.png" alt="Baldor">
+      <img src="keyence.png" alt="keyence">
       <img src="omron.png" alt="Omron">
+      <img src="watlow.png" alt="watlow">
+      <img src="tempco.png" alt="tempco">
     </div>
   </div>
 
   <script>
+    // Modal logic
     function openModal(id) {
       document.getElementById(id).classList.add('show');
     }
     function closeModal(id) {
       document.getElementById(id).classList.remove('show');
     }
+
+    // Crossfade background logic
+    const images = [
+      'bg1.png',
+      'bg2.png',
+      'bg3.png',
+      'bg4.png',
+      'bg5.png'
+      // Add more if you have them
+    ];
+    let current = 0;
+    const fader = document.querySelector('.bg-fader');
+    const faderNext = document.querySelector('.bg-fader-next');
+
+    function showNextBg() {
+      const next = (current + 1) % images.length;
+      faderNext.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('${images[next]}')`;
+      faderNext.style.opacity = 1;
+      setTimeout(() => {
+        fader.style.backgroundImage = faderNext.style.backgroundImage;
+        faderNext.style.opacity = 0;
+        current = next;
+      }, 1000); // match transition duration
+    }
+
+    function startBgCycle() {
+      fader.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('${images[0]}')`;
+      setInterval(showNextBg, 6000); // Change every 6 seconds
+    }
+
+    startBgCycle();
   </script>
 </body>
 </html>
+
 
 
