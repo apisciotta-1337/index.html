@@ -21,9 +21,14 @@
     nav a {
       margin: 0 1rem;
       text-decoration: none;
-      color: #fff;
+      color: #e36b1e;      /* Precision Automation orange */
       font-weight: bold;
       cursor: pointer;
+      transition: color 0.2s;
+    }
+    nav a:hover,
+    nav a:focus {
+      color: #fff;         /* Optional: white on hover/focus for contrast */
     }
     .modal {
       display: none;
@@ -92,15 +97,21 @@
     }
     .logo-scrollbar .scrolling-logos {
       display: inline-block;
-      animation: scrollLogos 60s linear infinite;
+      animation: scrollLogos 60s linear infinite; /* Faster scroll, starts right away */
+      animation-delay: 0s;
     }
     .logo-scrollbar img {
-      height: 60px;
-      margin: 0 20px;
+      height: 90px;           /* Make logos even larger */
+      margin: 0 24px;
       vertical-align: middle;
+      background: none;       /* Remove white background */
+      border-radius: 0;       /* Remove rounded corners */
+      padding: 0;             /* Remove padding */
+      object-fit: contain;    /* Stretch logos to fit their box, preserving aspect ratio */
+      box-shadow: 0 2px 6px #000; /* Optional: subtle shadow for contrast */
     }
     @keyframes scrollLogos {
-      0% { transform: translateX(100%); }
+      0% { transform: translateX(0); }      /* Start at 0 so logos are visible immediately */
       100% { transform: translateX(-100%); }
     }
     /* Crossfade backgrounds */
@@ -121,11 +132,37 @@
       z-index: -2;
       opacity: 0;
     }
+    /* Example CSS for matching the screenshot style */
+    .logo-text-precision {
+      color: #fff;
+      letter-spacing: 0.1em;
+      font-weight: bold;
+    }
+    .logo-text-automation {
+      color: #e36b1e;
+      letter-spacing: 0.1em;
+      font-weight: bold;
+    }
+    /* Add to your <style> section */
+    #bouncing-logo {
+      position: fixed;
+      top: 50px;
+      left: 50px;
+      z-index: 20;
+      pointer-events: none;
+    }
+    #bouncing-logo img {
+      filter: brightness(1.5) drop-shadow(0 2px 8px #000);
+      user-select: none;
+    }
   </style>
 </head>
 <body>
   <div class="bg-fader"></div>
-  <div class="bg-fader-next"></div>
+<div class="bg-fader-next"></div>
+<div id="bouncing-logo">
+  <img src="PA_Logo_Rectangle.png" alt="Precision Automation Logo" style="height:100px;">
+</div>
   <nav>
     <a onclick="openModal('whoModal')">Who We Are</a>
     <a onclick="openModal('capabilitiesModal')">Capabilities</a>
@@ -196,6 +233,7 @@
       <img src="omron.png" alt="Omron">
       <img src="watlow.png" alt="watlow">
       <img src="tempco.png" alt="tempco">
+      <img src="orientalmotor.png" alt="Oriental Motor">
     </div>
   </div>
 
@@ -208,10 +246,12 @@
       document.getElementById(id).classList.remove('show');
     }
 
-    // Crossfade background logic
+    // Background crossfade logic
     const images = [
-      'BG_1_logo'
-      // Add more if you have them
+      'BG_1.png',
+      'BG_2.png',
+      'BG_3.png',
+      'BG_4.png'
     ];
     let current = 0;
     const fader = document.querySelector('.bg-fader');
@@ -219,7 +259,7 @@
 
     function showNextBg() {
       const next = (current + 1) % images.length;
-      faderNext.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('${images[next]}')`;
+      faderNext.style.backgroundImage = `url('${images[next]}')`;
       faderNext.style.opacity = 1;
       setTimeout(() => {
         fader.style.backgroundImage = faderNext.style.backgroundImage;
@@ -229,12 +269,58 @@
     }
 
     function startBgCycle() {
-      fader.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('${images[0]}')`;
+      fader.style.backgroundImage = `url('${images[0]}')`;
       setInterval(showNextBg, 6000); // Change every 6 seconds
     }
 
     startBgCycle();
+
+    // Bouncing logo animation
+    const logo = document.getElementById('bouncing-logo');
+    const logoImg = logo.querySelector('img');
+    let x = 50, y = 50;
+    let dx = 2, dy = 2;
+
+    function getLogoSize() {
+      return {
+        width: logoImg.offsetWidth,
+        height: logoImg.offsetHeight
+      };
+    }
+
+    function moveLogo() {
+      const winW = window.innerWidth;
+      const winH = window.innerHeight;
+      const { width, height } = getLogoSize();
+
+      x += dx;
+      y += dy;
+
+      // Bounce off left/right
+      if (x <= 0 || x + width >= winW) {
+        dx = -dx;
+        x = Math.max(0, Math.min(x, winW - width));
+      }
+      // Bounce off top/bottom
+      if (y <= 0 || y + height >= winH) {
+        dy = -dy;
+        y = Math.max(0, Math.min(y, winH - height));
+      }
+
+      logo.style.left = x + 'px';
+      logo.style.top = y + 'px';
+      requestAnimationFrame(moveLogo);
+    }
+
+    moveLogo();
+
+    window.addEventListener('resize', () => {
+      const { width, height } = getLogoSize();
+      x = Math.min(x, window.innerWidth - width);
+      y = Math.min(y, window.innerHeight - height);
+    });
   </script>
 </body>
 </html>
+
 
