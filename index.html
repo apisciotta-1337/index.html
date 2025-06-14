@@ -76,29 +76,82 @@
       margin-bottom: 0.5rem;
     }
     .close {
-      color: #fff;
-      background: #007bff;
+      color: #e36b1e;      /* Precision Automation orange */
+      background: transparent;
       border-radius: 3px;
       padding: 2px 8px;
       position: absolute;
       top: 10px;
       right: 10px;
       cursor: pointer;
+      font-size: 1.5rem;
+      font-weight: bold;
+      border: none;
+      transition: color 0.2s;
+    }
+    .close:hover,
+    .close:focus {
+      color: #fff;         /* Optional: white on hover/focus for contrast */
+      background: #e36b1e;
     }
     .logo-scrollbar {
       position: fixed;
       bottom: 30px;
-      width: 100%;
+      // JavaScript: Handles scroll, delay, and reset
+      window.addEventListener('DOMContentLoaded', () => {
+        const logos = document.getElementById('scrolling-logos');
+        const scrollbar = document.querySelector('.logo-scrollbar');
+        let startTime = null;
+        let duration = 35000; // or your preferred speed
+        let startX, endX, distance;
+
+        function startScroll() {
+          logos.classList.add('active'); // <-- Show logos when animation starts
+          // Calculate widths
+          const logosWidth = logos.offsetWidth;
+          const barWidth = scrollbar.offsetWidth;
+          startX = barWidth;
+          endX = -logosWidth;
+          distance = startX - endX;
+
+          // Start animation
+          requestAnimationFrame(scrollStep);
+        }
+
+        function scrollStep(timestamp) {
+          if (!startTime) startTime = timestamp;
+          let elapsed = timestamp - startTime;
+          let progress = Math.min(elapsed / duration, 1);
+          let currentX = startX - distance * progress;
+          logos.style.transform = `translateX(${currentX}px)`;
+
+          if (progress < 1) {
+            requestAnimationFrame(scrollStep);
+          } else {
+            startTime = null;
+            setTimeout(startScroll, 0);
+          }
+        }
+
+        setTimeout(startScroll, 3000);
+      });      left: 0;
+      width: 100vw;
       overflow: hidden;
       white-space: nowrap;
       z-index: 10;
       background-color: transparent;
       padding: 10px 0;
     }
-    .logo-scrollbar .scrolling-logos {
+    .scrolling-logos {
       display: inline-block;
-      animation: scrollLogos 60s linear infinite; /* Faster scroll, starts right away */
-      animation-delay: 0s;
+      white-space: nowrap;
+      will-change: transform;
+      transition: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .scrolling-logos.active {
+      opacity: 1;
     }
     .logo-scrollbar img {
       height: 90px;           /* Make logos even larger */
@@ -213,7 +266,7 @@
   </div>
 
   <div class="logo-scrollbar">
-    <div class="scrolling-logos">
+    <div class="scrolling-logos" id="scrolling-logos">
       <img src="rockwell.png" alt="Rockwell">
       <img src="siemens.png" alt="Siemens">
       <img src="beckhoff.png" alt="Beckhoff">
@@ -321,6 +374,45 @@
       const { width, height } = getLogoSize();
       x = Math.min(x, window.innerWidth - width);
       y = Math.min(y, window.innerHeight - height);
+    });
+
+    // JavaScript: Handles scroll, delay, and reset
+    window.addEventListener('DOMContentLoaded', () => {
+      const logos = document.getElementById('scrolling-logos');
+      const scrollbar = document.querySelector('.logo-scrollbar');
+      let startTime = null;
+      let duration = 35000; // or your preferred speed
+      let startX, endX, distance;
+
+      function startScroll() {
+        logos.classList.add('active'); // <-- Show logos when animation starts
+        // Calculate widths
+        const logosWidth = logos.offsetWidth;
+        const barWidth = scrollbar.offsetWidth;
+        startX = barWidth;
+        endX = -logosWidth;
+        distance = startX - endX;
+
+        // Start animation
+        requestAnimationFrame(scrollStep);
+      }
+
+      function scrollStep(timestamp) {
+        if (!startTime) startTime = timestamp;
+        let elapsed = timestamp - startTime;
+        let progress = Math.min(elapsed / duration, 1);
+        let currentX = startX - distance * progress;
+        logos.style.transform = `translateX(${currentX}px)`;
+
+        if (progress < 1) {
+          requestAnimationFrame(scrollStep);
+        } else {
+          startTime = null;
+          setTimeout(startScroll, 0);
+        }
+      }
+
+      setTimeout(startScroll, 3000);
     });
   </script>
 </body>
