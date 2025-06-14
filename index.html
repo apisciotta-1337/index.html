@@ -152,6 +152,9 @@
       pointer-events: none;
     }
     #bouncing-logo img {
+      height: 180px; /* Try a much larger value */
+      max-width: 90vw;
+      max-height: 90vh;
       filter: brightness(1.5) drop-shadow(0 2px 8px #000);
       user-select: none;
     }
@@ -161,7 +164,7 @@
   <div class="bg-fader"></div>
 <div class="bg-fader-next"></div>
 <div id="bouncing-logo">
-  <img src="PA_Logo_Rectangle.png" alt="Precision Automation Logo" style="height:100px;">
+  <img src="PA_Logo_Rectangle.png" alt="Precision Automation Logo">
 </div>
   <nav>
     <a onclick="openModal('whoModal')">Who We Are</a>
@@ -322,6 +325,3 @@
   </script>
 </body>
 </html>
-
-
-
