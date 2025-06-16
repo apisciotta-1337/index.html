@@ -23,6 +23,8 @@
       text-decoration: none;
       color: #e36b1e;      /* Precision Automation orange */
       font-weight: bold;
+      font-size: 1.5rem;   /* Larger text */
+      letter-spacing: 0.05em;
       cursor: pointer;
       transition: color 0.2s;
     }
@@ -211,6 +213,33 @@
       filter: brightness(1.5) drop-shadow(0 2px 8px #000);
       user-select: none;
     }
+
+    @media (max-width: 600px) {
+  nav a {
+    display: block;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  .modal-content {
+    max-width: 95vw;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+  #bouncing-logo img {
+    height: 90px;
+    max-width: 95vw;
+    max-height: 30vh;
+  }
+  .logo-scrollbar {
+    padding: 4px 0;
+    bottom: 10px;
+  }
+  .logo-scrollbar img {
+    height: 48px;
+    margin: 0 8px;
+  }
+}
   </style>
 </head>
 <body>
